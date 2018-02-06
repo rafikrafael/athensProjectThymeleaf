@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::header"></head>
+<body>
+	<div th:replace="navbar::nav"></div>
+	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>Ultimas 10 postagens do dia</strong>
+			</div>
+			<div class="panel-body">
+				<article th:each="p : ${posts}">
+					<h2 class="title" th:text="${p.titulo}">Titulo</h2>
+					<div class="date">
+						<i>Postado no dia</i> <span
+							th:text="${#dates.format(p.dataCadastro, 'dd-MMM-yyyy hh:mm:ss')}"></span>
+						<span th:if="${p.usuario.nome}" th:remove="tag"> <i> por </i> <span
+							th:text="${p.usuario.nome != null ?
+                        p.usuario.nome : p.usuario.email}"></span>
+						</span>
+					</div>
+					<p class="content" th:utext="${p.descricao}">Descrição</p>
+				</article>
+			</div>
+		</div>
+	</div>
+	<div th:replace="layout::footer"></div>
+</body>
+</html>

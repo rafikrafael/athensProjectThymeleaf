@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="UTF-8" />
+<title>Editar informações do Usuário</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="panel panel-default">
+				<div class="panel-heading">Editar informações do perfil do
+					usuário!</div>
+				<div class="panel-body">
+					<form th:method="post" th:action="@{/salvaPerfil}"
+						th:object="${usuario}">
+						<div class="alert alert-danger" th:if="${#fields.hasErrors()}">
+							<p th:each="error: ${#fields.allErrors()}" th:text="${error}"></p>
+						</div>
+
+						<input th:field="*{id}" type="hidden" />
+
+						<div class="form-group">
+							<label for="nome">Nome</label> <input type="text"
+								th:field="*{nome}" placeholder="Nome" class="form-control" />
+						</div>
+
+						<div class="form-group">
+							<label for="email">Email</label> <input type="text"
+								th:field="*{email}" placeholder="email" class="form-control"
+								readonly="true" />
+						</div>
+
+						<div class="form-group">
+							<label for="plainPassword">Senha</label> <input type="password"
+								th:field="*{plainPassword}" placeholder="Senha"
+								class="form-control" />
+						</div>
+
+						<div class="form-group">
+							<label for="cpf">CPF</label> <input type="text" th:field="*{cpf}"
+								placeholder="CPF" class="form-control" />
+						</div>
+
+						<div class="form-group">
+							<label for="celular">Celular</label> <input type="text"
+								th:field="*{celular}" placeholder="Celular" class="form-control" />
+						</div>
+
+						<div class="form-group">
+							<label for="telefone">Telefone</label> <input type="text"
+								th:field="*{telefone}" placeholder="Telefone"
+								class="form-control" />
+						</div>
+
+						<div class="form-group">
+							<label for="dataNascimento">Data de Nascimento</label> <input
+								type="date" th:field="*{dataNascimento}"
+								placeholder="Data Nascimento" class="form-control" />
+						</div>
+
+						<div class="form-group">
+							<label for="genero">Género</label> 
+							<select class="form-control" th:field="*{{genero}}">
+					            <option th:each="genero : ${T(br.com.athens.domains.Genero).values()}"
+					                    th:value="${{genero}}"
+					                    th:selected="${genero == T(br.com.athens.domains.Genero)}"
+					                    th:text="${genero}">
+						        </option>
+					        </select>
+						</div>
+
+
+						<button type="submit" class="btn btn-primary">Salvar</button>
+						<a class="btn btn-danger" th:href="@{/}" >Cancelar</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
