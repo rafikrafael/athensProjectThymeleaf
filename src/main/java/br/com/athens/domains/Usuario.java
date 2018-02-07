@@ -93,6 +93,15 @@ public class Usuario extends Pessoa {
 		return tipoUsuario;
 	}
 	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		switch (tipoUsuario) {
+		case ADMINISTRADOR:
+			this.setRole("ROLE_ADMIN");
+			break;
+
+		default:
+			this.setRole("ROLE_USER");
+			break;
+		}
 		this.tipoUsuario = tipoUsuario;
 	}
 	
