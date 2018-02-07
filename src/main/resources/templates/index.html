@@ -14,7 +14,7 @@
 					<h2 class="title" th:text="${p.titulo}">Titulo</h2>
 					<div class="date">
 						<i>Postado no dia</i> <span
-							th:text="${#dates.format(p.dataCadastro, 'dd-MMM-yyyy hh:mm:ss')}"></span>
+							th:text="${#dates.format(p.dataCadastro, 'dd-MMM-yyyy HH:mm:ss')}"></span>
 						<span th:if="${p.usuario.nome}" th:remove="tag"> <i> por </i> <span
 							th:text="${p.usuario.nome != null ?
                         p.usuario.nome : p.usuario.email}"></span>
