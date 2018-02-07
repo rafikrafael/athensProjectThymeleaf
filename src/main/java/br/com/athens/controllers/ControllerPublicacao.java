@@ -46,7 +46,7 @@ public class ControllerPublicacao {
 		modelAndView.setViewName("/publicacao/form");
 		if (!result.hasErrors()) {
 			servicePublicacao.save(publicacao);
-			modelAndView.setViewName("redirect:/");
+			return listarPublicacoes();
 		}
 		return modelAndView;
 	}

@@ -29,6 +29,14 @@
             <li><a th:href="@{/listarPublicacoes}">Listar minhas publicações</a></li>
           </ul>
         </li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Cadastros <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a th:href="@{/incluirGrupo}">Adicionar Grupo</a></li>
+            <li><a th:href="@{/listarGrupos}">Listar Grupos</a></li>
+          </ul>
+        </li>
         <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">Admin</a></li>
         <li>
 	        <div class="loginUser" th:inline="text">Olá [[${#httpServletRequest.remoteUser}]]!</div>

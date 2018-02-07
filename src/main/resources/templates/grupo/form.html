@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="UTF-8" />
+<title>Publicação do Usuário</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="panel panel-default">
+				<div class="panel-heading">Inserir Grupo!</div>
+				<div class="panel-body">
+					<form th:method="post" th:action="@{/salvarGrupo}"
+						th:object="${grupo}">
+						<div class="alert alert-danger" th:if="${#fields.hasErrors()}">
+							<p th:each="error: ${#fields.allErrors()}" th:text="${error}"></p>
+						</div>
+						
+						<input th:field="*{id}" type="hidden" />
+						
+						<div class="form-group">
+							<label for="titulo">Título</label> <input type="text"
+								th:field="*{titulo}" placeholder="Título" class="form-control" />
+						</div>
+
+						<div class="form-group">
+							<label for="descricao">Descrição</label> <input type="text"
+								th:field="*{descricao}" placeholder="Descrição" class="form-control" />
+						</div>
+						
+						<div class="form-group">
+							<label for="dtInicio">Data de Início</label> <input
+								type="date" th:field="*{dtInicio}"
+								placeholder="Data de Início" class="form-control" />
+						</div>
+
+						<div class="form-group">
+							<label for="ambiente">Ambiente</label> 
+							<select class="form-control" th:field="*{{ambiente}}">
+					            <option th:each="ambiente : ${T(br.com.athens.domains.Ambiente).values()}"
+					                    th:value="${{ambiente}}"
+					                    th:selected="${ambiente == T(br.com.athens.domains.Ambiente)}"
+					                    th:text="${ambiente}">
+						        </option>
+					        </select>
+						</div>
+						
+						<button type="submit" class="btn btn-primary">Salvar</button>
+						<a class="btn btn-danger" th:href="@{/listarGrupos}" >Cancelar</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

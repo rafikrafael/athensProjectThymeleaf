@@ -1,5 +1,7 @@
 package br.com.athens.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,10 @@ private RepositoryGrupo repository;
 	@Override
 	public CrudRepository<Grupo, Long> getRepository() {	
 		return this.repository;
+	}
+	
+	public List<Grupo> getAllNotDelete() {
+		return this.repository.findByStatusOrderById(false);
 	}
 
 }

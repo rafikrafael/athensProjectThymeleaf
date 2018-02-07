@@ -34,7 +34,7 @@ public class ControllerUsuario {
 	}
 
 	@RequestMapping(value = "/salvaPerfil", method = RequestMethod.POST)
-	ModelAndView editStatus(ModelAndView modelAndView, @Valid Usuario usuario, BindingResult result) {
+	ModelAndView salvarPerfil(ModelAndView modelAndView, @Valid Usuario usuario, BindingResult result) {
 		modelAndView.setViewName("/perfil/editarPerfilUsuario");
 		if (!result.hasErrors()) {
 			serviceUsuario.save(usuario);

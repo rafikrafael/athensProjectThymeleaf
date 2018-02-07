@@ -15,6 +15,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.envers.Audited;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="grupo")
@@ -37,6 +38,7 @@ public class Grupo extends AbstractEntity {
 	private String descricao;
 	
 	@Column(name = "dt_inicio", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private  Calendar dtInicio;
 	
 	@Enumerated(EnumType.ORDINAL)	

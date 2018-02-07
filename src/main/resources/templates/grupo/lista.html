@@ -21,20 +21,24 @@
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th>Autor</th>
 									<th>T&iacute;tulo</th>
+									<th>Descrição</th>
+									<th>Dt. Início</th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="post : ${posts}">
-									<td th:text="${post.id}"></td>
-									<td th:text="${post.usuario.nome}"></td>
-									<td th:text="${post.titulo}"></td>
+								<tr th:each="grupo : ${grupos}">
+									<td th:text="${grupo.id}"></td>
+									<td th:text="${grupo.titulo}"></td>
+									<td th:text="${grupo.descricao}"></td>
+									<td th:text="${#dates.format(grupo.dtInicio, 'dd-MMM-yyyy')}"></td>
 									<td>
 										<div class="btn-group pull-right">
+											<a class="delete btn btn-sm btn-default"
+												th:href="@{/editarGrupo/{id}(id=${grupo.id})}">Editar</a>
 											<a class="delete btn btn-sm btn-danger"
-												th:href="@{/deletePublicacao/{id}(id=${post.id})}"
+												th:href="@{/deleteGrupo/{id}(id=${grupo.id})}"
 												onclick="return confirm('Confirma a exclusão?')">Excluir</a>
 										</div>
 									</td>
@@ -44,7 +48,7 @@
 					</div>
 				</div>
 				<div class="panel-footer">
-					<a class="btn btn-success" th:href="@{/incluirPublicacao}">Adicionar</a>
+					<a class="btn btn-success" th:href="@{/incluirGrupo}">Adicionar</a>
 					<a class="btn btn-danger" th:href="@{/}" >Voltar</a>
 				</div>
 			</div>
